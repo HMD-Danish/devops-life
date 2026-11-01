@@ -1,0 +1,47 @@
+{
+  "name": "SecurityEvent",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "failed_pin, rate_limited, session_locked, scraping_pattern, denied_access ..."
+    },
+    "ip": {
+      "type": "string",
+      "description": "Caller address as reported by the platform edge"
+    },
+    "detail": {
+      "type": "string",
+      "description": "Short technical context. Never PINs, chat text or terminal output"
+    },
+    "profile_id": {
+      "type": "string",
+      "description": "Profile id when the event belongs to a known session"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "name": "MaintenanceLog",
+  "type": "object",
+  "properties": {
+    "turnedOnAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "turnedOffAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Empty while this window is still open"
+    },
+    "reason": {
+      "type": "string",
+      "description": "The player-facing message of that window"
+    },
+    "admin": {
+      "type": "string",
+      "description": "Label of the admin session that turned it on"
+    },
+    "blockedCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Distinct visitors refused during that window"
+    },
+    "durationMs": {
+      "type": "number",
+      "default": 0,
+      "description": "How long the window lasted, written when it is turned off"
+    },
+    "extendedMs": {
+      "type": "number",
+      "default": 0,
+      "description": "How much the five-day retention window was pushed out for every player"
+    }
+  },
+  "required": [
+    "turnedOnAt"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

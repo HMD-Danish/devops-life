@@ -1,0 +1,108 @@
+{
+  "name": "Ticket",
+  "type": "object",
+  "properties": {
+    "save_id": {
+      "type": "string"
+    },
+    "player_normalized_name": {
+      "type": "string",
+      "description": "Lowercased player name this record belongs to"
+    },
+    "project_key": {
+      "type": "string",
+      "description": "Only tickets of the current project are shown"
+    },
+    "step_key": {
+      "type": "string",
+      "description": "Project step this ticket belongs to"
+    },
+    "key": {
+      "type": "string",
+      "description": "Human reference such as SHP-101"
+    },
+    "title": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "incident",
+        "change",
+        "task",
+        "request",
+        "problem"
+      ],
+      "default": "task"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "default": "P3"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "in_progress",
+        "blocked",
+        "resolved"
+      ],
+      "default": "open"
+    },
+    "assignee": {
+      "type": "string"
+    },
+    "reporter": {
+      "type": "string"
+    },
+    "opened_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Real timestamp the ticket was opened"
+    },
+    "sla_due_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Real deadline. The countdown is this timestamp minus the current time"
+    },
+    "resolved_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "player_owned": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "title"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

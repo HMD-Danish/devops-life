@@ -1,0 +1,94 @@
+{
+  "name": "ChatMessage",
+  "type": "object",
+  "properties": {
+    "save_id": {
+      "type": "string",
+      "description": "Career save this message belongs to"
+    },
+    "project_key": {
+      "type": "string",
+      "description": "Project the message was written in; the workspace only loads its own project"
+    },
+    "player_normalized_name": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "player",
+        "team"
+      ],
+      "default": "player",
+      "description": "player wrote it, team answered from a scripted pool"
+    },
+    "author": {
+      "type": "string",
+      "description": "Display name shown in the thread"
+    },
+    "author_role": {
+      "type": "string",
+      "description": "Job title shown next to the name"
+    },
+    "body": {
+      "type": "string",
+      "description": "Message text, max 280 characters"
+    },
+    "intent": {
+      "type": "string",
+      "description": "Rule-detected intent: status_update, ask_logs, fix_done, off_topic ..."
+    },
+    "quality": {
+      "type": "number",
+      "default": 0,
+      "description": "Checklist score 0 to 5 for a player message"
+    },
+    "tip": {
+      "type": "string",
+      "description": "One scripted tip on how to improve the message"
+    },
+    "step_key": {
+      "type": "string"
+    },
+    "sent_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Real timestamp the message was written. Shown as the message time"
+    },
+    "reveal_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Real timestamp the row becomes visible; gives team replies their delay"
+    },
+    "senior": {
+      "type": "boolean",
+      "default": false,
+      "description": "A senior engineer joined because of a good escalation"
+    }
+  },
+  "required": [
+    "body"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>DevOps Life</title>
+    <meta name="description" content="A career simulation for DevOps: incidents, terminals, deployments and the team around them. Learn DevOps by doing the job." />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/logo-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/logo-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icons/logo-512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!--
+      Security headers. The platform injects one inline bootstrap script, so
+      script-src keeps 'unsafe-inline'; everything else is restricted to this
+      origin and the platform's own services. Frame and MIME-sniffing headers
+      (X-Frame-Options, X-Content-Type-Options) can only be set by the server,
+      not from a meta tag.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://*.base44.app; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://media.base44.com https://static.wixstatic.com https://*.base44.app; font-src 'self' data:; connect-src 'self' https://*.base44.app wss://*.base44.app https://media.base44.com; object-src 'none'; base-uri 'self'; form-action 'self';"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <meta name="theme-color" content="#F2F4F8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0B0E14" media="(prefers-color-scheme: dark)" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="DevOps Life" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="DevOps Life" />
+    <meta property="og:title" content="DevOps Life" />
+    <meta property="og:description" content="Learn DevOps by doing the job." />
+    <meta property="og:image" content="https://devopstest.base44.app/icons/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="DevOps Life logo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DevOps Life" />
+    <meta name="twitter:description" content="Learn DevOps by doing the job." />
+    <meta name="twitter:image" content="https://devopstest.base44.app/icons/og-image.png" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

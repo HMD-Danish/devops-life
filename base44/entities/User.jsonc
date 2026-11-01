@@ -1,0 +1,36 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "enum": [
+        "player",
+        "admin"
+      ],
+      "default": "player"
+    },
+    "theme": {
+      "type": "string",
+      "enum": [
+        "light",
+        "dark"
+      ],
+      "default": "light"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "player_name": {
+      "type": "string",
+      "description": "How the team addresses the player, asked once before the first project"
+    },
+    "current_save_id": {
+      "type": "string"
+    },
+    "onboarded": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "name": "CareerSave",
+  "type": "object",
+  "properties": {
+    "player_normalized_name": {
+      "type": "string",
+      "description": "Lowercased player name this career belongs to"
+    },
+    "name": {
+      "type": "string",
+      "description": "Project title, used as the save name"
+    },
+    "player_name": {
+      "type": "string",
+      "description": "How the team addresses the player in chat and the terminal prompt"
+    },
+    "project_key": {
+      "type": "string",
+      "description": "Key of the project content this career is working through"
+    },
+    "project_title": {
+      "type": "string"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "default": "medium",
+      "description": "Chosen level. It decides which variants of every step are played"
+    },
+    "score": {
+      "type": "number",
+      "description": "Last score computed for this project at its level"
+    },
+    "step_index": {
+      "type": "number",
+      "default": 0,
+      "description": "Index of the step the player is on, inside the level's step list"
+    },
+    "steps_done": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Step keys already completed"
+    },
+    "hints": {
+      "type": "object",
+      "description": "Step key to the highest hint level revealed for it"
+    },
+    "mistakes": {
+      "type": "object",
+      "description": "Step key to the number of failed attempts"
+    },
+    "chat_replies": {
+      "type": "object",
+      "description": "Scripted message id to the quick reply chosen"
+    },
+    "team_trust": {
+      "type": "number",
+      "default": 100,
+      "description": "0 to 100. Rises with complete updates and falls with vague or off-topic ones"
+    },
+    "manager_calm_until": {
+      "type": "number",
+      "default": 0,
+      "description": "Epoch milliseconds a good status update buys quiet, so repeating pings stay off the channel"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Real timestamp the current project was started. Every timer counts from here"
+    },
+    "paused_ms": {
+      "type": "number",
+      "default": 0,
+      "description": "Total real milliseconds the player was away. Time away is never counted against a timer"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "archived"
+      ],
+      "default": "active"
+    },
+    "tutorialDone": {
+      "type": "boolean",
+      "default": false,
+      "description": "Set once the guided tour has been finished or skipped, so it never opens on its own again"
+    },
+    "feedbackPrompted": {
+      "type": "boolean",
+      "default": false,
+      "description": "Legacy flag. The completion prompt is now tracked per project in feedback_prompted_projects"
+    },
+    "feedback_prompted_projects": {
+      "type": "object",
+      "description": "Project key to true once the completion feedback prompt was shown for that project"
+    },
+    "feedback_submitted_projects": {
+      "type": "object",
+      "description": "Project key to true once feedback was actually sent for that project"
+    },
+    "feedbackSubmitted": {
+      "type": "boolean",
+      "default": false,
+      "description": "Legacy flag. Feedback sent is now tracked per project in feedback_submitted_projects"
+    },
+    "last_played_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_seen_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last real-world time the player had the game open"
+    },
+    "last_seen_version": {
+      "type": "string",
+      "description": "Last release version this player dismissed the What's new popup for"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

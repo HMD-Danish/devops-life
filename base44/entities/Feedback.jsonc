@@ -1,0 +1,122 @@
+{
+  "name": "Feedback",
+  "type": "object",
+  "properties": {
+    "rating": {
+      "type": "number",
+      "description": "1 to 5 stars. 0 when the visitor only wrote text"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "bug",
+        "idea",
+        "content",
+        "design"
+      ],
+      "default": "idea",
+      "description": "The first selected category, kept so older screens and exports still read one value"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Every category the visitor selected, as labels, for example [\"Content\",\"Design\"]. Empty on older tickets that only carry category"
+    },
+    "message": {
+      "type": "string",
+      "description": "Up to 500 characters. Stored as plain text and shown as text only, never rendered as HTML"
+    },
+    "name": {
+      "type": "string",
+      "description": "Optional name the visitor typed, capped at 30 characters"
+    },
+    "contact": {
+      "type": "string",
+      "description": "Optional email or LinkedIn the visitor left for a reply"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ]
+    },
+    "projectTitle": {
+      "type": "string",
+      "description": "Title of the project that was open when the feedback was sent"
+    },
+    "score": {
+      "type": "number",
+      "description": "Project score at completion, filled by the completion prompt. 0 for plain feedback"
+    },
+    "hintsUsed": {
+      "type": "number",
+      "description": "Hints revealed in the finished project"
+    },
+    "mistakes": {
+      "type": "number",
+      "description": "Wrong turns taken in the finished project"
+    },
+    "trigger": {
+      "type": "string",
+      "enum": [
+        "auto_after_project",
+        "auto_after_first_project",
+        "manual"
+      ],
+      "default": "manual",
+      "description": "Whether the completion prompt opened this or the player opened it themselves"
+    },
+    "visitor": {
+      "type": "string",
+      "description": "Salted hash of the caller's address. Used only to hold the three-per-hour quota; the address itself is never stored"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "read",
+        "in_progress",
+        "done"
+      ],
+      "default": "new",
+      "description": "Triage state, changed only from the private admin dashboard"
+    },
+    "adminNote": {
+      "type": "string",
+      "description": "Private note for the builder. Never shown to a visitor"
+    }
+  },
+  "required": [
+    "category"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

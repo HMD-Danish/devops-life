@@ -1,0 +1,71 @@
+{
+  "name": "Service",
+  "type": "object",
+  "properties": {
+    "save_id": {
+      "type": "string"
+    },
+    "player_normalized_name": {
+      "type": "string"
+    },
+    "project_key": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "description": "api, worker, database, cache"
+    },
+    "health": {
+      "type": "string",
+      "enum": [
+        "healthy",
+        "degraded",
+        "down"
+      ],
+      "default": "healthy"
+    },
+    "replicas": {
+      "type": "number",
+      "default": 1
+    },
+    "version": {
+      "type": "string"
+    },
+    "last_deploy": {
+      "type": "string",
+      "description": "How long ago the service was last deployed"
+    },
+    "environment": {
+      "type": "string",
+      "default": "prod"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

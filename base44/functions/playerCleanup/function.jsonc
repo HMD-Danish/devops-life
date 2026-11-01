@@ -1,0 +1,15 @@
+{
+  "name": "playerCleanup",
+  "entry": "entry.ts",
+  "automations": [
+    {
+      "type": "scheduled",
+      "name": "hourly_player_cleanup",
+      "schedule_mode": "recurring",
+      "schedule_type": "simple",
+      "repeat_unit": "hours",
+      "repeat_interval": 1,
+      "enabled": true
+    }
+  ]
+}

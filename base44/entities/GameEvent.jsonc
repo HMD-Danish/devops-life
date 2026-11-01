@@ -1,0 +1,63 @@
+{
+  "name": "GameEvent",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "career_started",
+        "project_started",
+        "project_completed",
+        "hint_used",
+        "mistake",
+        "feedback_sent"
+      ],
+      "description": "The single moment this row records"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ]
+    },
+    "projectId": {
+      "type": "string",
+      "description": "Project key the event belongs to"
+    },
+    "playerName": {
+      "type": "string",
+      "description": "Display name of the player at the moment of the event, filled in by the server"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

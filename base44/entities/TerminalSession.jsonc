@@ -1,0 +1,137 @@
+{
+  "name": "TerminalSession",
+  "type": "object",
+  "properties": {
+    "player_normalized_name": {
+      "type": "string",
+      "description": "Lowercased player name this record belongs to"
+    },
+    "save_id": {
+      "type": "string"
+    },
+    "project_key": {
+      "type": "string",
+      "description": "Project this session belongs to; a session never outlives its project"
+    },
+    "environment_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "host": {
+      "type": "string"
+    },
+    "context": {
+      "type": "string",
+      "description": "Cluster or kube context"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "closed",
+        "expired"
+      ],
+      "default": "open"
+    },
+    "is_break_glass": {
+      "type": "boolean",
+      "default": false
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ended_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "command_count": {
+      "type": "number",
+      "default": 0
+    },
+    "cwd": {
+      "type": "string",
+      "description": "Current directory inside the simulated filesystem"
+    },
+    "namespace": {
+      "type": "string",
+      "default": "prod"
+    },
+    "files": {
+      "type": "object",
+      "description": "Virtual filesystem: absolute path -> { type: file|dir, content }"
+    },
+    "env": {
+      "type": "object",
+      "description": "Shell environment variables"
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "git": {
+      "type": "object",
+      "description": "Branch, ahead count, dirty files and last commit message"
+    },
+    "workloads": {
+      "type": "object",
+      "description": "Per-workload extras: autoscaler config and resource limits"
+    },
+    "pipeline_request": {
+      "type": "object",
+      "description": "A pipeline run queued from the terminal (git push) and not yet picked up"
+    },
+    "pushed_images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Images pushed to the registry from this session"
+    },
+    "docker": {
+      "type": "object",
+      "description": "Local container engine state: images, containers, networks, volumes and build counters"
+    },
+    "kube": {
+      "type": "object",
+      "description": "Objects created against the cluster: extra namespaces, config maps, secrets, applied services and live problems"
+    },
+    "seeded_for": {
+      "type": "string",
+      "description": "Primary service name the virtual repo was generated for"
+    },
+    "last_command_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

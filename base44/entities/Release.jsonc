@@ -1,0 +1,116 @@
+{
+  "name": "Release",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "x.y.z, always higher than the version live when it was published"
+    },
+    "title": {
+      "type": "string",
+      "description": "One line the players read first, 3 to 80 characters"
+    },
+    "changes": {
+      "type": "array",
+      "description": "1 to 30 rows, each with a type and one line of text",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "new",
+              "improved",
+              "fixed",
+              "removed"
+            ]
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "text"
+        ]
+      }
+    },
+    "details": {
+      "type": "string",
+      "description": "Optional plain text under the list, up to 1000 characters"
+    },
+    "releaseDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published"
+      ],
+      "default": "draft",
+      "description": "Only published releases are ever shown to players"
+    },
+    "important": {
+      "type": "boolean",
+      "default": false,
+      "description": "The popup cannot be dismissed by the background and carries a red dot"
+    },
+    "notifyPlayers": {
+      "type": "boolean",
+      "default": true
+    },
+    "forceRefresh": {
+      "type": "boolean",
+      "default": true,
+      "description": "Open sessions are asked to reload"
+    },
+    "publishedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "publishedBy": {
+      "type": "string",
+      "description": "Label of the admin session that published it"
+    },
+    "seenCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Distinct visitors who dismissed the popup for this version"
+    },
+    "seenVisitors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Hashes of the visitors already counted, so one player counts once"
+    }
+  },
+  "required": [
+    "version",
+    "title"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "name": "InfraResource",
+  "type": "object",
+  "properties": {
+    "save_id": {
+      "type": "string"
+    },
+    "project_key": {
+      "type": "string",
+      "description": "Project this resource belongs to; every query filters by project and save"
+    },
+    "player_normalized_name": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "node",
+        "cluster",
+        "database",
+        "cache",
+        "queue",
+        "bucket",
+        "load_balancer",
+        "network",
+        "dns"
+      ],
+      "default": "node"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "instance_size": {
+      "type": "string"
+    },
+    "monthly_cost": {
+      "type": "number",
+      "description": "What the resource costs per month, read by the cost explorer"
+    },
+    "utilization": {
+      "type": "number",
+      "description": "CPU utilization in percent, read by node diagnostics"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "running",
+        "stopped",
+        "degraded",
+        "terminated"
+      ],
+      "default": "running"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

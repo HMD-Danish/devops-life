@@ -1,0 +1,99 @@
+{
+  "name": "AppSettings",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Always 'global'. One row holds the whole app's switches"
+    },
+    "maintenanceOn": {
+      "type": "boolean",
+      "default": false,
+      "description": "The single switch every player function reads before doing anything"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Player-facing message, 10 to 300 characters. Shown as plain text"
+    },
+    "expectedBackAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Optional time the app should be back. Shown to players in their own local time"
+    },
+    "internalNote": {
+      "type": "string",
+      "description": "Admin-only note. Never leaves an admin response"
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the current maintenance window was turned on"
+    },
+    "startedBy": {
+      "type": "string",
+      "description": "Label of the admin session that turned it on"
+    },
+    "blockedCount": {
+      "type": "number",
+      "default": 0,
+      "description": "Distinct visitors refused since this window started"
+    },
+    "blockedVisitors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Hashes of the visitors already counted, so one player is only counted once"
+    },
+    "logId": {
+      "type": "string",
+      "description": "The MaintenanceLog row this window writes when it is turned off"
+    },
+    "testTokenHash": {
+      "type": "string",
+      "description": "SHA-256 of the test-environment token. Only exists while maintenance is on"
+    },
+    "testTokenExpiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "currentVersion": {
+      "type": "string",
+      "description": "The version players see. Always the highest published release version"
+    },
+    "currentReleaseId": {
+      "type": "string",
+      "description": "The release row the current version points at"
+    },
+    "seenGeneration": {
+      "type": "number",
+      "default": 0,
+      "description": "Bumped by 'Show again to all players' so every browser shows the popup once more"
+    }
+  },
+  "required": [
+    "key"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

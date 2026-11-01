@@ -1,0 +1,91 @@
+{
+  "name": "PlayerProfile",
+  "type": "object",
+  "properties": {
+    "normalized_name": {
+      "type": "string",
+      "description": "Lowercased, trimmed name used to match a returning player. Display only \u2014 never an authorization handle"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Original spelling shown in chat, mentions, the terminal prompt and reviews"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_active_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "last_active_at + 5 days. Passing it deletes the profile and all its data"
+    },
+    "pin_salt": {
+      "type": "string",
+      "description": "Random per-profile salt; the PIN itself is never stored"
+    },
+    "pin_hash": {
+      "type": "string",
+      "description": "PBKDF2-SHA256 of the salted PIN. Legacy profiles hold an unsalted hash until their next successful unlock"
+    },
+    "pin_attempts": {
+      "type": "number",
+      "default": 0
+    },
+    "pin_locked_until": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "session_token_hash": {
+      "type": "string",
+      "description": "SHA-256 of the current session token. The token itself never leaves the device that earned it"
+    },
+    "session_issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "session_last_used_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "session_expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "24 hours after the last request; every request slides it forward"
+    },
+    "session_locked_until": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Set when repeated abuse is detected; all requests are refused until it passes"
+    }
+  },
+  "required": [
+    "normalized_name",
+    "display_name"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

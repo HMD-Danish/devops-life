@@ -1,0 +1,39 @@
+{
+  "name": "AppMeta",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Single row per key, for example last_cleanup_at or linkedin_notes"
+    },
+    "value": {
+      "type": "string",
+      "description": "Plain text value owned by the server"
+    }
+  },
+  "required": [
+    "key"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

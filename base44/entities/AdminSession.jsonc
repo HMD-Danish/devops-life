@@ -1,0 +1,48 @@
+{
+  "name": "AdminSession",
+  "type": "object",
+  "properties": {
+    "token_hash": {
+      "type": "string",
+      "description": "SHA-256 of the admin token. The token itself only ever lives in the admin browser tab"
+    },
+    "ip": {
+      "type": "string",
+      "description": "Address that signed in, kept for the audit trail only"
+    },
+    "last_used_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Two hours after the last request; every admin call slides it forward"
+    }
+  },
+  "required": [
+    "token_hash"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
